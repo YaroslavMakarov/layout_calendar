@@ -1,3 +1,58 @@
 body {
   margin: 0;
 }
+
+$gap: 1px;
+$month: 28, 29, 30, 31;
+$width: 100px;
+$days: (
+  0: "mon",
+  1: "tue",
+  2: "wed",
+  3: "thu",
+  4: "fri",
+  5: "sat",
+  6: "sun"
+);
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: ($gap+$width)*7;
+  margin: 100px auto;
+  @each $days in $month {
+    @for $i from 1 through $days {
+      &-#{$days} {
+        & :nth-child(#{$i}) {
+          height: 100px;
+          width: 100px;
+          background-color: #eee;
+          box-sizing: border-box;
+          border: 1px solid black;
+          transition: background-color 0.5s;
+
+          &:after {
+            content: "#{$i}";
+            font-family: Arial, sans-serif;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            line-height: 100px;
+          }
+
+          &:hover {
+            cursor: pointer;
+            transform: translate(0, -20px);
+            transition: 0.5s;
+            background-color: pink;
+          }
+        }
+      }
+    }
+  }
+  @each $name, $day in $days {
+    &-#{$day} div:first-child {
+      margin-left: $name*($gap+$width);
+    }
+  }
+}
