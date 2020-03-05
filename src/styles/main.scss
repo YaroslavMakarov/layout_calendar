@@ -27,17 +27,15 @@ $days: (
     background-color: #eee;
     box-sizing: border-box;
     border: 1px solid black;
-    transition: background-color 0.5s;
     font-family: Arial, sans-serif;
     font-size: 30px;
-    display: flex;
-    justify-content: center;
     line-height: 100px;
+    transition: 0.5s;
+    display: none;
 
     &:hover {
       cursor: pointer;
       transform: translate(0, -20px);
-      transition: 0.5s;
       background-color: pink;
     }
   }
@@ -46,6 +44,8 @@ $days: (
     @for $i from 1 through $days {
       &-#{$days} {
         & :nth-child(#{$i}) {
+          display: flex;
+          justify-content: center;
 
           &:after {
             content: "#{$i}";
